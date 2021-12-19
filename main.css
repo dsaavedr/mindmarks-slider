@@ -1,0 +1,114 @@
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  font-family: Roboto, sans-serif;
+  background: linear-gradient(#000, #fff);
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.overflow-wrapper {
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.swiper {
+  min-height: 400px;
+  width: 80%;
+  overflow: visible;
+}
+@media screen and (min-width: 768px) {
+  .swiper {
+    width: 90%;
+  }
+}
+.swiper-wrapper {
+  max-width: 800px;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .swiper-wrapper {
+    max-width: 200px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .swiper-wrapper {
+    display: flex;
+    overflow: visible;
+    justify-content: center;
+  }
+}
+.swiper-slide {
+  background: #16151D;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.6), 0 8px 16px rgba(0, 0, 0, 0.6), 0 16px 32px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-out;
+}
+.swiper-slide img {
+  width: 100px;
+  margin-bottom: 40px;
+}
+.swiper-slide .title {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.swiper-slide .slide-content-wrapper {
+  padding: 40px 20px;
+}
+@media screen and (max-width: 768px) {
+  .swiper-slide .slide-content-wrapper {
+    height: 60vh;
+  }
+}
+@media screen and (min-width: 768px) {
+  .swiper-slide:nth-of-type(2n - 1) {
+    transform: translateY(10%);
+  }
+  .swiper-slide:hover {
+    transform: translateY(-5%);
+  }
+}
+
+.icon {
+  background: #16151D;
+  border-radius: 50%;
+  display: inline-block;
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 2px 2px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.6), 0 2px 16px rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+}
+.icon .fas {
+  background: -webkit-linear-gradient(#504A9E, #3B82AB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.icon.prev {
+  left: 10vw;
+}
+.icon.next {
+  right: 10vw;
+}
+@media (min-width: 1000px) {
+  .icon.prev {
+    left: calc(calc((100vw - 800px)/2) - 50px);
+  }
+  .icon.next {
+    right: calc(calc((100vw - 800px)/2) - 50px);
+  }
+}
+.icon:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=main.css.map */
