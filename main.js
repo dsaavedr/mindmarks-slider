@@ -1,7 +1,9 @@
 const WRAPPER_QUERY = ".swiper-wrapper",
+    BUTTONS_QUERY = ".icon",
     NAV_PREV = ".icon.prev",
     NAV_NEXT = ".icon.next",
-    BREAKPOINT = 768;
+    BREAKPOINT = 768,
+    BUTTONS = document.querySelectorAll(BUTTONS_QUERY);
 
 const wrapper = document.querySelector(WRAPPER_QUERY);
 
@@ -41,11 +43,7 @@ const clearWrapper = () => {
     if (wrapper) wrapper.innerHTML = "";
 };
 
-const checkHeight = () => {
-    const { innerWidth: w } = window;
-
-    return w <= BREAKPOINT;
-};
+const checkHeight = () => window.innerWidth <= BREAKPOINT;
 
 const createSwiper = () => {
     swiper = new Swiper(".swiper", {
@@ -55,6 +53,34 @@ const createSwiper = () => {
         },
         spaceBetween: 100
     });
+
+    swiperCreated = true;
+    console.log("Created swiper");
+
+    try {
+        BUTTONS.forEach(button => button.removeEventListener("click", switchSlides));
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const destroySwiper = () => {
+    swiper.destroy(true, true);
+    swiperCreated = false;
+    console.log("Destroyed swiper");
+    clearWrapper();
+    createSlides();
+
+    try {
+        BUTTONS.forEach(button => button.addEventListener("click", switchSlides));
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const switchSlides = () => {
+    const slides = document.querySelectorAll(".swiper-slide");
+    slides.forEach(slide => slide.classList.toggle("back"));
 };
 
 const init = () => {
@@ -63,17 +89,17 @@ const init = () => {
 
     if (checkHeight()) {
         createSwiper();
+    } else {
+        BUTTONS.forEach(button => {
+            button.addEventListener("click", switchSlides);
+        });
     }
 
     window.addEventListener("resize", () => {
         if (checkHeight() && !swiperCreated) {
             createSwiper();
-            swiperCreated = true;
-            console.log("Created swiper");
         } else if (!checkHeight() && swiperCreated) {
-            swiper.destroy(true, true);
-            swiperCreated = false;
-            console.log("Destroyed swiper");
+            destroySwiper();
         }
     });
 };
