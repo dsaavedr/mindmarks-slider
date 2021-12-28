@@ -73,7 +73,7 @@ body {
     width: unset;
     flex-shrink: initial;
   }
-  .swiper-slide:nth-of-type(n+1) {
+  .swiper-slide:nth-of-type(n+2) {
     margin-left: -20px;
   }
   .swiper-slide:not(.back) {
