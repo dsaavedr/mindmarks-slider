@@ -1,7 +1,7 @@
-const WRAPPER_QUERY = ".swiper-wrapper",
-    BUTTONS_QUERY = ".icon",
-    NAV_PREV = ".icon.prev",
-    NAV_NEXT = ".icon.next",
+const WRAPPER_QUERY = "#custom-brand-slider .swiper-wrapper",
+    BUTTONS_QUERY = "#custom-brand-slider .icon",
+    NAV_PREV = "#custom-brand-slider .icon.prev",
+    NAV_NEXT = "#custom-brand-slider .icon.next",
     BREAKPOINT = 768,
     BUTTONS = document.querySelectorAll(BUTTONS_QUERY);
 
@@ -46,7 +46,7 @@ const clearWrapper = () => {
 const checkHeight = () => window.innerWidth <= BREAKPOINT;
 
 const createSwiper = () => {
-    swiper = new Swiper(".swiper", {
+    swiper = new Swiper("#custom-brand-slider .swiper", {
         navigation: {
             prevEl: NAV_PREV,
             nextEl: NAV_NEXT
@@ -55,7 +55,7 @@ const createSwiper = () => {
     });
 
     swiperCreated = true;
-    console.log("Created swiper");
+    // console.log("Created swiper");
 
     try {
         BUTTONS.forEach(button => button.removeEventListener("click", switchSlides));
@@ -67,7 +67,7 @@ const createSwiper = () => {
 const destroySwiper = () => {
     swiper.destroy(true, true);
     swiperCreated = false;
-    console.log("Destroyed swiper");
+    // console.log("Destroyed swiper");
     clearWrapper();
     createSlides();
 
@@ -79,7 +79,7 @@ const destroySwiper = () => {
 };
 
 const switchSlides = () => {
-    const slides = document.querySelectorAll(".swiper-slide");
+    const slides = document.querySelectorAll("#custom-brand-slider .swiper-slide");
     slides.forEach(slide => slide.classList.toggle("back"));
 };
 
